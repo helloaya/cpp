@@ -26,7 +26,8 @@ int do_pub() {
         sprintf (update, "%05d %d %d", zipcode, temperature, relhumidity);
         printf ("sending..\n");
         zmq_send (publisher, update, strlen(update), 0);
-        printf ("done..\n");
+        printf ("done...waiting...\n");
+        sleep (5);
     }
     zmq_close (publisher);
     zmq_ctx_destroy (context);
