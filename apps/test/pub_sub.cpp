@@ -27,7 +27,6 @@ int do_pub() {
         printf ("sending..\n");
         zmq_send (publisher, update, strlen(update), 0);
         printf ("done...waiting...\n");
-        sleep (1);
     }
     zmq_close (publisher);
     zmq_ctx_destroy (context);
@@ -42,7 +41,7 @@ int do_sub () {
     int rc = zmq_connect (subscriber, "tcp://35.185.158.58:5555");
     printf ("connect %i\n", rc);
     //  Subscribe to zipcode, default is NYC, 10001
-    char *filter = "demo";
+    char *filter = "10001";
     rc = zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE,
                          filter, strlen (filter));
 
