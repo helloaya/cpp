@@ -17,7 +17,7 @@ int do_pub() {
     while (1) {
         //  Get values that will fool the boss
         int zipcode, temperature, relhumidity;
-        zipcode     = rand () % 100000;
+        zipcode     = 10001;
         temperature = rand () % 215 - 80;
         relhumidity = rand () % 50 + 10;
 
@@ -27,6 +27,7 @@ int do_pub() {
         printf ("sending..\n");
         zmq_send (publisher, update, strlen(update), 0);
         printf ("done...waiting...\n");
+        sleep (1);
     }
     zmq_close (publisher);
     zmq_ctx_destroy (context);
