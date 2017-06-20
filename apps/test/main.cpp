@@ -10,7 +10,7 @@ int do_client (){
     zmq_connect (requester, "tcp://35.185.158.58:5555");
 
     int request_nbr;
-    for (request_nbr = 0; request_nbr != 10; request_nbr++) {
+    for (request_nbr = 0; request_nbr != 1000; request_nbr++) {
         char buffer [10];
         printf ("Sending Hello %d…\n", request_nbr);
         zmq_send (requester, "Hello", 5, 0);
@@ -34,7 +34,6 @@ int do_server () {
         printf ("Wait for resp\n");
         zmq_recv (responder, buffer, 10, 0);
         printf ("Received %s\n", buffer);
-        sleep (1);
         zmq_send (responder, "World", 5, 0);
     }
 	return 0;
