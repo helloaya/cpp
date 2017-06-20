@@ -34,7 +34,7 @@ int do_server () {
         printf ("Wait for resp\n");
         zmq_recv (responder, buffer, 10, 0);
         printf ("Received %s\n", buffer);
-        sleep (1000);
+        sleep (1);
         zmq_send (responder, "World", 5, 0);
     }
 	return 0;
