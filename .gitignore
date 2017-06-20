@@ -1,3 +1,7 @@
 3rd
-apps/.DS_Store
+*.c_obj
+*.cpp_obj
+
+apps/test/zmq_test
 apps/test/.DS_Store
+apps/.DS_Store
