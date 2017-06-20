@@ -24,7 +24,9 @@ int do_pub() {
         //  Send message to all subscribers
         char update [20];
         sprintf (update, "%05d %d %d", zipcode, temperature, relhumidity);
+        printf ("sending..\n");
         zmq_send (publisher, update, strlen(update), 0);
+        printf ("done..\n");
     }
     zmq_close (publisher);
     zmq_ctx_destroy (context);
