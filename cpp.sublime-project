@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "/Users/aya/dev/cpp"
+		},
+		{
+			"path": "/Users/aya/dev/zeromq-4.2.1"
 		}
 	]
 }
