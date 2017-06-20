@@ -17,7 +17,7 @@ int do_pub() {
     while (1) {
         //  Get values that will fool the boss
         int zipcode, temperature, relhumidity;
-        zipcode     = 10001;
+        zipcode     = rand () % 100000;
         temperature = rand () % 215 - 80;
         relhumidity = rand () % 50 + 10;
 
@@ -27,7 +27,6 @@ int do_pub() {
         printf ("sending..\n");
         zmq_send (publisher, update, strlen(update), 0);
         printf ("done...waiting...\n");
-        sleep (1);
     }
     zmq_close (publisher);
     zmq_ctx_destroy (context);
@@ -43,14 +42,13 @@ int do_sub () {
     printf ("connect %i\n", rc);
     //  Subscribe to zipcode, default is NYC, 10001
     char *filter = "10001";
-    rc = zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE,
-                         filter, strlen (filter));
+    rc = zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE, NULL, 0);
 
     printf ("setsockopt %i\n", rc);
     //  Process 100 updates
     int update_nbr;
     long total_temp = 0;
-    for (update_nbr = 0; update_nbr < 100; update_nbr++) {
+    for (update_nbr = 0; update_nbr < 5; update_nbr++) {
         char string[20] = {0,};
 
         printf ("wait for update %i\n", update_nbr);
